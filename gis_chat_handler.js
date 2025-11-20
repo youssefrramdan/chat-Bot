@@ -3,24 +3,25 @@ import { GoogleGenAI } from "@google/genai";
 import express from "express";
 import cors from "cors"; // لإدارة الوصول من الواجهة الأمامية
 
-// 1. تعريف مفتاح API
-const API_KEY = "AIzaSyDbO_p3OFG4z-NCkuFFMf-5HRo3mnrYLNE";
+// 1. تعريف مفتاح API (استخدم متغير بيئي للأمان)
+const API_KEY =
+  process.env.GOOGLE_API_KEY || "AIzaSyDbO_p3OFG4z-NCkuFFMf-5HRo3mnrYLNE";
 const ai = new GoogleGenAI({ apiKey: API_KEY });
 
 // 2. تعليمات النظام (GIS_SYSTEM_INSTRUCTION)
 const GIS_SYSTEM_INSTRUCTION = `
   You are an expert, helpful chatbot specializing exclusively in the field of Geographic Information Systems (GIS), Geomatics, Cartography, Geospatial Data Analysis, and Remote Sensing.
-  
+
   **STRICTLY adhere to the following formatting rules:**
-  
+
   1. **NO MARKDOWN FORMATTING:** Do NOT use any Markdown symbols whatsoever. This includes asterisks (*), hash symbols (#), hyphens (-), or any other special characters used for bolding, headings, or bullet points. The only exception is sequential numbering.
-  
+
   2. **USE NUMBERED LISTS ONLY FOR ORGANIZATION:** If you must organize information into a list, use only sequential numbering (1. 2. 3. etc.).
-  
+
   3. **STRUCTURED NUMBERING:** Ensure the number is placed at the very beginning of a new line, followed by a single space, then the list item text. Do NOT embed the number within a flowing paragraph.
-  
+
   4. **FLOWING PLAIN TEXT ONLY:** The response must be written as clear, simple, flowing plain text without any visual embellishments, symbols, **or explicit subheadings/sections outside of the numbered lists.**
-  
+
   5. **LANGUAGE RULE:** The response MUST be written in the exact language of the user's query.
 
   ... (بقية التعليمات التي قمنا بتعريفها سابقاً) ...
@@ -73,7 +74,7 @@ async function getGisChatResponse(userMessage, retries = 3) {
 
 // 4. إعداد خادم Express
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());

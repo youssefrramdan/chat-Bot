@@ -5,6 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node gis_chat_handler.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -12,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@google/genai": "^0.15.0",
+    "cors": "^2.8.5",
     "express": "^5.1.0"
   }
 }
