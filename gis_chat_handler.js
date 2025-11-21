@@ -5,7 +5,7 @@ import cors from "cors"; // لإدارة الوصول من الواجهة الأ
 
 // 1. تعريف مفتاح API (استخدم متغير بيئي للأمان)
 const API_KEY =
-  process.env.GOOGLE_API_KEY || "AIzaSyDbO_p3OFG4z-NCkuFFMf-5HRo3mnrYLNE";
+  process.env.GOOGLE_API_KEY || "AIzaSyA3AeN-zdypJLjlVxLf_i9hcMaI5K99Hvc";
 const ai = new GoogleGenAI({ apiKey: API_KEY });
 
 // 2. تعليمات النظام (GIS_SYSTEM_INSTRUCTION)
